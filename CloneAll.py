@@ -55,7 +55,7 @@ allProjects = urlopen(pageurltemplate.format(gitserver, token, pagesize, 1))
 pages = allProjects.headers.get("X-Total-Pages")
 total = allProjects.headers.get("X-Total")
 
-print(f"Total {total} (Pages {pages})")
+print(f"Total {total} ({pages} pages of {pagesize} items)")
 
 for page in range(0, int(pages)):
     try:
