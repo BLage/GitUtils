@@ -51,7 +51,7 @@ def loadPagedProjects(page):
 
         f.write(f"{projectRepoUrl}, {status}\r\n")
 
-allProjects = urlopen(pageurltemplate.format(gitserver, token, pagesize, 1)
+allProjects = urlopen(pageurltemplate.format(gitserver, token, pagesize, 1))
 pages = allProjects.headers.get("X-Total-Pages")
 total = allProjects.headers.get("X-Total")
 
