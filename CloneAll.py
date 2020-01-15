@@ -12,14 +12,14 @@ gitserver = "<GITLABSERVER>"
 basefolder = "<BASE FOLDER>"
 currentFolder = os.getcwd()
 
-pageurl = "{}/api/v4/projects?private_token={token}&per_page={}&page={}"
+pageurltemplate = "{}/api/v4/projects?private_token={}&per_page={}&page={}"
 
 total = 0
 current_time = datetime.now().strftime("%H_%M_%S")
 f=open(f"{currentFolder}/notdownloaded{current_time}.csv", "a+")
 
 def loadPagedProjects(page):
-    pageurl = pageurl.format(gitserveren={token}&per_page={pagesize}&page={page + 1}"
+    pageurl = pageurltemplate.format(gitserver, token, pagesize, page + 1)
     print(f"Getting {pagesize} from page {page + 1} - {pageurl}")
     pageProjects = urlopen(pageurl)
     pageProjectsDict = json.loads(pageProjects.read().decode())
@@ -51,7 +51,7 @@ def loadPagedProjects(page):
 
         f.write(f"{projectRepoUrl}, {status}\r\n")
 
-allProjects = urlopen(f"{gitserver}/api/v4/projects?private_token={token}&per_page={pagesize}&page=1")
+allProjects = urlopen(pageurltemplate.format(gitserver, token, pagesize, 1)
 pages = allProjects.headers.get("X-Total-Pages")
 total = allProjects.headers.get("X-Total")
 
